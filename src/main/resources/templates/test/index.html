@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorator="~{test/content/content}">
+
+<div layout:fragment="testcontent">
+    <h1>스프링 부트 ver2</h1>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <a th:href="@{/posts/save}" role="button"
+                   class="btn btn-primary">글 등록</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</html>

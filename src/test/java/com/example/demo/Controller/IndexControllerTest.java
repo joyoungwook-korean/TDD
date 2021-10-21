@@ -1,49 +1,28 @@
 package com.example.demo.Controller;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.http.MediaType;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 
-import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.assertj.core.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(controllers = IndexController.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class IndexControllerTest {
 
     @Autowired
-    private MockMvc mvc;
+    private TestRestTemplate restTemplate;
 
     @Test
-    public void return_Hello() throws Exception {
-        String hello = "hello";
+    public void loading(){
+        String body = this.restTemplate.getForObject("/",String.class);
 
-        mvc.perform(get("/hello"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(hello));
-    }
-
-    @Test
-    public void return_helloDto() throws Exception {
-        String name = "test";
-        int amount = 1000;
-
-        mvc.perform(get("/hello/dto").param("name", name)
-                .param("amount", String.valueOf(amount)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name", is(name)))
-                .andExpect(jsonPath("$.amount",is(amount)));
+        assertThat(body).contains("스프링 부트로 시작하는 웹 서비스");
 
     }
-
 
 }
