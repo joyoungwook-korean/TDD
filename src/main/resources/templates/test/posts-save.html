@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{test/content/content}">
+
+
+<div layout:fragment="testcontent">
+  <h1>게시글 등록</h1>
+  <div class="col-md-12">
+    <div class="col-md-4">
+      <form>
+        <div class="form-group">
+          <label for="title">제목</label>
+          <input type="text" class="form-control" id="title" placeholder="값입력">
+        </div>
+
+        <div class="form-group">
+          <label for="author">작성자</label>
+          <input type="text" class="form-control" id="author" placeholder="값입력">
+        </div>
+
+        <div class="form-group">
+          <label for="content">내용</label>
+          <textarea  class="form-control" id="content" placeholder="값입력"></textarea>
+        </div>
+      </form>
+      <a th:href="@{/}" role="button" class="btn btn-danger" th:text="취소"></a>
+      <button type="button" class="btn btn-primary" id="btn-save" th:text="등록"></button>
+
+    </div>
+  </div>
+
+</div>
+
+<th:block layout:fragment="custom_js">
+  <script th:src="@{/js/app/index.js}"></script>
+</th:block>
+
+
+</html>

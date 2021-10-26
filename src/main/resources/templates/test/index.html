@@ -3,6 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorator="~{test/content/content}">
 
+
 <div layout:fragment="testcontent">
     <h1>스프링 부트 ver2</h1>
     <div class="col-md-12">
@@ -12,6 +13,26 @@
                    class="btn btn-primary">글 등록</a>
             </div>
         </div>
+
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th>게시글 번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>최종수정일</th>
+            </tr>
+            </thead>
+            <tbody class="table table-hover" id="tbody" th:each="post : ${posts}">
+            <tr th:onclick="'location.href=\''+ @{/posts/update/}+${post.id} + '\''">
+                <th th:text="${post.id}"></th>
+                <th th:text="${post.title}"></th>
+                <th th:text="${post.author}"></th>
+                <th th:text="${post.modifiedDate}"></th>
+            </tr>
+            </tbody>
+        </table>
+
     </div>
 </div>
 
